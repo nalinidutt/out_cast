@@ -3,20 +3,24 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Web Scraper',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: WebScraperPage(),
+      home: const WebScraperPage(),
     );
   }
 }
 
 class WebScraperPage extends StatefulWidget {
+  const WebScraperPage({super.key});
+
   @override
   _WebScraperPageState createState() => _WebScraperPageState();
 }
@@ -40,7 +44,7 @@ class _WebScraperPageState extends State<WebScraperPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Web Scraper')),
+      appBar: AppBar(title: const Text('Web Scraper')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +52,7 @@ class _WebScraperPageState extends State<WebScraperPage> {
             Text(_scrapedData ?? 'No data scraped yet'),
             ElevatedButton(
               onPressed: _scrapeWeb,
-              child: Text('Scrape Data'),
+              child: const Text('Scrape Data'),
             )
           ],
         ),
