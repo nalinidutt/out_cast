@@ -48,7 +48,10 @@ class _CartState extends State<Cart> {
               itemCount: groceries!.length + 1, // +1 for the "At Home" header
               itemBuilder: (context, index) {
                 if (index == 0) {
-                  return ListTile();
+                  return ListTile(
+                    title: Text('At Home', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    onTap: null, // Non-clickable header
+                  );
                 }
                 final item = groceries![index - 1]; // -1 to adjust for the added header
 
@@ -82,62 +85,52 @@ class _CartState extends State<Cart> {
 
   showDialog(
     context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Edit Item'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
-          TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
-          ListTile(
-            title: Text("At Home"),
-            leading: InkWell(
-              onTap: () {
-                setState(() {
-                  isAtHome = !isAtHome;
-                  if (isAtHome) {
-                    groceries![index].category = 'at home';
-                  } else {
-                    groceries![index].category = '';
-                  }
-                });
-              },
-              child: Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 2.0),
-                ),
-                child: isAtHome ? Icon(Icons.check, size: 18) : null,
+    builder: (context) => StatefulBuilder( // Use StatefulBuilder to update state within showDialog
+      builder: (context, setModalState) {
+        return AlertDialog(
+          title: Text('Edit Item'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
+              TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
+              CheckboxListTile(
+                title: Text("At Home"),
+                value: isAtHome,
+                onChanged: (newValue) {
+                  setModalState(() { // Update the local state for immediate feedback
+                    isAtHome = newValue!;
+                  });
+                },
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          child: Text('Cancel'),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        TextButton(
-          child: Text('Update'),
-          onPressed: () {
-            final updatedItem = GroceryItem(
-              name: nameController.text,
-              price: double.parse(priceController.text),
-              category: isAtHome ? 'at home' : '', // Set the category based on checkbox state
-            );
+          actions: [
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: Text('Update'),
+              onPressed: () {
+                final updatedItem = GroceryItem(
+                  name: nameController.text,
+                  price: double.parse(priceController.text),
+                  category: isAtHome ? 'at home' : '',
+                );
 
-            setState(() {
-              groceries![index] = updatedItem;
-            });
+                setState(() {
+                  groceries![index] = updatedItem;
+                });
 
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }
     ),
   );
 }
+
 }
