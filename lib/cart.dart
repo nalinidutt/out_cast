@@ -48,10 +48,7 @@ class _CartState extends State<Cart> {
               itemCount: groceries!.length + 1, // +1 for the "At Home" header
               itemBuilder: (context, index) {
                 if (index == 0) {
-                  return ListTile(
-                    title: Text('At Home', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    onTap: null, // Non-clickable header
-                  );
+                  return ListTile();
                 }
                 final item = groceries![index - 1]; // -1 to adjust for the added header
 
@@ -93,6 +90,7 @@ class _CartState extends State<Cart> {
             TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
             TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
             CheckboxListTile(
+              title: Text("At Home")
               value: isAtHome,
               onChanged: (newValue) {
                 setState(() {
