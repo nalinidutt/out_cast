@@ -10,12 +10,11 @@ class SampleItemDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('${item?.title ?? "Unknown"}'),
-        backgroundColor: Color.fromARGB(255, 111, 211, 114),
+        backgroundColor: Colors.green, // Use a subtle color
+        centerTitle: true, // Center the title
+        title: Text(item?.title ?? "Unknown"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,7 +23,7 @@ class SampleItemDetailsView extends StatelessWidget {
             Container(
               height: 200,
               child: Image.network(
-                item?.imageURL ?? "",
+                item?.imageURL ?? "placeholder_image_url", // Use a placeholder image
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,26 +33,17 @@ class SampleItemDetailsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item?.title ?? "No Title",
-                    style: TextStyle(
-                      fontSize: 28, // Increase title font size
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10), // Reduce spacing between title and cuisine
-                  Text(
                     'Cuisine: ${item?.cuisine ?? "No Cuisine"}',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey, // Use a subdued color
                     ),
                   ),
-                  SizedBox(height: 16), // Reduce spacing between cuisine and description
+                  SizedBox(height: 16),
                   Text(
                     'Description:',
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 10),
@@ -61,7 +51,7 @@ class SampleItemDetailsView extends StatelessWidget {
                     '${item?.description ?? "No Description"}',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.grey, // Use a subdued color
+                      color: Colors.grey,
                     ),
                   ),
                   SizedBox(height: 10),
@@ -69,7 +59,6 @@ class SampleItemDetailsView extends StatelessWidget {
                     'Recipe:',
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 10),
@@ -152,6 +141,7 @@ class SampleItemDetailsView extends StatelessWidget {
                       color: Colors.grey, // Use a subdued color
                     ),
                   ),
+
                 ],
               ),
             ),
@@ -161,3 +151,7 @@ class SampleItemDetailsView extends StatelessWidget {
     );
   }
 }
+
+
+
+
