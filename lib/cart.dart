@@ -45,30 +45,42 @@ Widget build(BuildContext context) {
     body: groceries == null
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(
-            itemCount: groceries!.length, // Removed +1
-            itemBuilder: (context, index) {
-              final item = groceries![index]; // Removed -1 adjustment
+  itemCount: groceries!.length,
+  itemBuilder: (context, index) {
+    final item = groceries![index];
 
-              return Dismissible(
-                key: UniqueKey(),
-                onDismissed: (direction) {
-                  setState(() {
-                    groceries!.removeAt(index);
-                  });
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('${item.name} removed')),
-                  );
-                },
-                background: Container(color: Colors.red),
-                child: ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
-                  trailing: item.category == 'at home' ? Icon(Icons.home) : null, // Show home icon for items "at home"
-                  onTap: () => _editItem(context, index),
-                ),
-              );
-            },
+    return Card(
+      elevation: 5.0,
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: ListTile(
+        contentPadding: EdgeInsets.all(15.0),
+        leading: CircleAvatar(
+          child: Icon(Icons.fastfood, color: Colors.white,),  // Placeholder icon, you can replace it with more specific icons if needed.
+          backgroundColor: Colors.teal,
+        ),
+        title: Text(
+          item.name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
           ),
+        ),
+        subtitle: Text(
+          '\$${item.price.toStringAsFixed(2)}',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey[700],
+          ),
+        ),
+        trailing: item.category == 'at home'
+            ? Icon(Icons.home, color: Colors.teal)
+            : null, // Show home icon for items "at home"
+        onTap: () => _editItem(context, index),
+      ),
+    );
+  },
+),
+
   );
 }
 
