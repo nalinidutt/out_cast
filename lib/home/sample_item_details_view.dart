@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trial4/src/sample_feature/sample_item.dart';
+import 'sample_item_details_view.dart';
 
 class SampleItemDetailsView extends StatelessWidget {
   final SampleItem? item;
