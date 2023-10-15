@@ -56,7 +56,7 @@ Widget build(BuildContext context) {
         contentPadding: EdgeInsets.all(15.0),
         leading: CircleAvatar(
           child: Icon(Icons.fastfood, color: Colors.white,),  // Placeholder icon, you can replace it with more specific icons if needed.
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.green.shade200,
         ),
         title: Text(
           item.name,
