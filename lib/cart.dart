@@ -38,52 +38,6 @@ class _CartState extends State<Cart> {
     }
   }
 
-  @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(title: Text('Cart')),
-    body: groceries == null
-        ? Center(child: CircularProgressIndicator())
-        : ListView.builder(
-  itemCount: groceries!.length,
-  itemBuilder: (context, index) {
-    final item = groceries![index];
-
-    return Card(
-      elevation: 5.0,
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-      child: ListTile(
-        contentPadding: EdgeInsets.all(15.0),
-        leading: CircleAvatar(
-          child: Icon(Icons.fastfood, color: Colors.white,),  // Placeholder icon, you can replace it with more specific icons if needed.
-          backgroundColor: Colors.green.shade200,
-        ),
-        title: Text(
-          item.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
-          ),
-        ),
-        subtitle: Text(
-          '\$${item.price.toStringAsFixed(2)}',
-          style: TextStyle(
-            fontSize: 15.0,
-            color: Colors.grey[700],
-          ),
-        ),
-        trailing: item.category == 'at home'
-            ? Icon(Icons.home, color: Colors.teal)
-            : null, // Show home icon for items "at home"
-        onTap: () => _editItem(context, index),
-      ),
-    );
-  },
-),
-
-  );
-}
-
   void _editItem(BuildContext context, int index) {
   final nameController = TextEditingController(text: groceries![index].name);
   final priceController = TextEditingController(text: groceries![index].price.toString());
@@ -138,5 +92,99 @@ Widget build(BuildContext context) {
     ),
   );
 }
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(title: Text('Cart')),
+    body: groceries == null
+        ? Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: groceries!.length,
+            itemBuilder: (context, index) {
+              final item = groceries![index];
+
+              return Card(
+                elevation: 5.0,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15.0),
+                  leading: CircleAvatar(
+                    child: Icon(Icons.fastfood, color: Colors.white,),
+                    backgroundColor: Colors.green.shade200,
+                  ),
+                  title: Text(
+                    item.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '\$${item.price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  trailing: item.category == 'at home'
+                      ? Icon(Icons.home, color: Colors.teal)
+                      : null, // Show home icon for items "at home"
+                  onTap: () => _editItem(context, index),
+                ),
+              );
+            },
+          ),
+    floatingActionButton: FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: _addGrocery,
+    ),
+  );
+}
+
+
+  void _addGrocery() {
+    final nameController = TextEditingController();
+    final priceController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Add New Grocery Item'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
+            TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
+          ],
+        ),
+        actions: [
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            child: Text('Add'),
+            onPressed: () {
+              if (nameController.text.isNotEmpty && priceController.text.isNotEmpty) {
+                final newItem = GroceryItem(
+                  name: nameController.text,
+                  price: double.parse(priceController.text),
+                );
+
+                setState(() {
+                  groceries!.add(newItem);
+                });
+
+                Navigator.of(context).pop();
+              } else {
+                // You can handle the case when fields are empty, maybe by showing an error message.
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
 }
