@@ -93,7 +93,6 @@ class _CartState extends State<Cart> {
             TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
             TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
             CheckboxListTile(
-              title: Text("At Home"),
               value: isAtHome,
               onChanged: (newValue) {
                 setState(() {
