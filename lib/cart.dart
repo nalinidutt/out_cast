@@ -38,71 +38,124 @@ class _CartState extends State<Cart> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Cart')),
-      body: groceries == null
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: groceries!.length + 1, // +1 for the "At Home" header
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return ListTile();
-                }
-                final item = groceries![index - 1]; // -1 to adjust for the added header
+  void _editItem(BuildContext context, int index) {
+  final nameController = TextEditingController(text: groceries![index].name);
+  final priceController = TextEditingController(text: groceries![index].price.toString());
+  bool isAtHome = groceries![index].category == 'at home';
 
-                return Dismissible(
-                  key: UniqueKey(),
-                  onDismissed: (direction) {
-                    setState(() {
-                      groceries!.removeAt(index - 1);
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${item.name} removed')),
-                    );
-                  },
-                  background: Container(color: Colors.red),
-                  child: ListTile(
-                    title: Text(item.name),
-                    subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
-                    trailing: item.category == 'at home' ? Icon(Icons.home) : null, // Show home icon for items "at home"
-                    onTap: () => _editItem(context, index - 1),
-                  ),
+  showDialog(
+    context: context,
+    builder: (context) => StatefulBuilder( // Use StatefulBuilder to update state within showDialog
+      builder: (context, setModalState) {
+        return AlertDialog(
+          title: Text('Edit Item'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
+              TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
+              CheckboxListTile(
+                title: Text("At Home"),
+                value: isAtHome,
+                onChanged: (newValue) {
+                  setModalState(() { // Update the local state for immediate feedback
+                    isAtHome = newValue!;
+                  });
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: Text('Update'),
+              onPressed: () {
+                final updatedItem = GroceryItem(
+                  name: nameController.text,
+                  price: double.parse(priceController.text),
+                  category: isAtHome ? 'at home' : '',
                 );
+
+                setState(() {
+                  groceries![index] = updatedItem;
+                });
+
+                Navigator.of(context).pop();
               },
             ),
-    );
-  }
+          ],
+        );
+      }
+    ),
+  );
+}
 
-  void _editItem(BuildContext context, int index) {
-    final nameController = TextEditingController(text: groceries![index].name);
-    final priceController = TextEditingController(text: groceries![index].price.toString());
-    bool isAtHome = groceries![index].category == 'at home';
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(title: Text('Cart')),
+    body: groceries == null
+        ? Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: groceries!.length,
+            itemBuilder: (context, index) {
+              final item = groceries![index];
+
+              return Card(
+                elevation: 5.0,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15.0),
+                  leading: CircleAvatar(
+                    child: Icon(Icons.fastfood, color: Colors.white,),
+                    backgroundColor: Colors.green.shade200,
+                  ),
+                  title: Text(
+                    item.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '\$${item.price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  trailing: item.category == 'at home'
+                      ? Icon(Icons.home, color: Colors.teal)
+                      : null, // Show home icon for items "at home"
+                  onTap: () => _editItem(context, index),
+                ),
+              );
+            },
+          ),
+    floatingActionButton: FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: _addGrocery,
+    ),
+  );
+}
+
+
+  void _addGrocery() {
+    final nameController = TextEditingController();
+    final priceController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Edit Item'),
+        title: Text('Add New Grocery Item'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
             TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
-            CheckboxListTile(
-              title: Text("At Home"),
-              value: isAtHome,
-              onChanged: (newValue) {
-                setState(() {
-                  isAtHome = newValue!;
-                  if (isAtHome) {
-                    groceries![index].category = 'at home';
-                  } else {
-                    groceries![index].category = '';
-                  }
-                });
-              },
-            ),
           ],
         ),
         actions: [
@@ -111,23 +164,41 @@ class _CartState extends State<Cart> {
             onPressed: () => Navigator.of(context).pop(),
           ),
           TextButton(
-            child: Text('Update'),
+            child: Text('Add'),
             onPressed: () {
-              final updatedItem = GroceryItem(
-                name: nameController.text,
-                price: double.parse(priceController.text),
-                category: isAtHome ? 'at home' : '', // Set the category based on checkbox state
-              );
+              if (nameController.text.isNotEmpty && priceController.text.isNotEmpty) {
+                final newItem = GroceryItem(
+                  name: nameController.text,
+                  price: double.parse(priceController.text),
+                );
 
-              setState(() {
-                groceries![index] = updatedItem;
-              });
+                setState(() {
+                  groceries!.add(newItem);
+                });
 
-              Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              } else {
+                // You can handle the case when fields are empty, maybe by showing an error message.
+              }
             },
           ),
         ],
       ),
     );
+    try {
+  final newItem = GroceryItem(
+    name: nameController.text,
+    price: double.parse(priceController.text),
+  );
+
+  setState(() {
+    groceries!.add(newItem);
+  });
+
+  Navigator.of(context).pop();
+} catch (e) {
+  // Show error message to the user. For example, "Please enter a valid price."
+}
   }
+
 }
