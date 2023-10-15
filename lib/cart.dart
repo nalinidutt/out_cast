@@ -185,6 +185,20 @@ Widget build(BuildContext context) {
         ],
       ),
     );
+    try {
+  final newItem = GroceryItem(
+    name: nameController.text,
+    price: double.parse(priceController.text),
+  );
+
+  setState(() {
+    groceries!.add(newItem);
+  });
+
+  Navigator.of(context).pop();
+} catch (e) {
+  // Show error message to the user. For example, "Please enter a valid price."
+}
   }
 
 }
