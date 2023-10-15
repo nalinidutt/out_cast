@@ -10,17 +10,16 @@ class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
     super.key,
     this.items = const [
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 0, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*")
-      ],
+    SampleItem("Pad Thai", "Asian", 2, "https://www.recipetineats.com/wp-content/uploads/2020/01/Chicken-Pad-Thai_9-SQ.jpg"),
+    SampleItem("Spaghetti Carbonara", "Italian", 1, "https://static01.nyt.com/images/2021/02/14/dining/carbonara-horizontal/carbonara-horizontal-threeByTwoMediumAt2X-v2.jpg"),
+    SampleItem("Tandoori Chicken", "Indian", 0, "https://www.cubesnjuliennes.com/wp-content/uploads/2022/12/Tandoori-Chicken-Recipe.jpg"),
+    SampleItem("Sushi", "Japanese", 2, "https://hips.hearstapps.com/hmg-prod/images/spicy-crab-rolls4-1654808938.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*"),
+    SampleItem("Tacos", "Mexican", 1, "https://www.foodandwine.com/thmb/SPdstaqV80YcCbzzqtHXjxx4Isg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/birria-tacos-FT-RECIPE0420-1-b209e88cc1c04b72849634ff15214290.jpg"),
+    SampleItem("Beef Stew", "American", 0, "https://hips.hearstapps.com/hmg-prod/images/beef-stew-horizontal-1539197161.jpg?crop=1xw:0.9997999709048588xh;center,top&resize=1200:*"),
+    SampleItem("Goulash", "Hungarian", 1, "https://hips.hearstapps.com/hmg-prod/images/goulash-recipe-1637354807.jpg?crop=1xw:0.8434864104967198xh;center,top&resize=1200:*"),
+    SampleItem("Dim Sum", "Chinese", 2, "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/qsdncbfx/dbcd686d-ac24-481c-8ac5-cd8baab51cbb.jpg"),
+    SampleItem("Pav Bhaji", "Indian", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNjXPjUKOuhCZjtJs79tXML-V7TUMj9yD5Ww&usqp=CAU"),
+  ],
   });
 
   static const routeName = '/';
