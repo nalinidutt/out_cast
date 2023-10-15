@@ -6,8 +6,9 @@ import 'package:flutter/services.dart';
 class GroceryItem {
   final String name;
   final double price;
+  String category;
 
-  GroceryItem({required this.name, required this.price});
+  GroceryItem({required this.name, required this.price, this.category = ''}); // Default to empty category
 }
 
 class Cart extends StatefulWidget {
@@ -44,14 +45,21 @@ class _CartState extends State<Cart> {
       body: groceries == null
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: groceries!.length,
+              itemCount: groceries!.length + 1, // +1 for the "At Home" header
               itemBuilder: (context, index) {
-                final item = groceries![index];
+                if (index == 0) {
+                  return ListTile(
+                    title: Text('At Home', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    onTap: null, // Non-clickable header
+                  );
+                }
+                final item = groceries![index - 1]; // -1 to adjust for the added header
+
                 return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
                     setState(() {
-                      groceries!.removeAt(index);
+                      groceries!.removeAt(index - 1);
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('${item.name} removed')),
@@ -61,7 +69,8 @@ class _CartState extends State<Cart> {
                   child: ListTile(
                     title: Text(item.name),
                     subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
-                    onTap: () => _editItem(context, index),
+                    trailing: item.category == 'at home' ? Icon(Icons.home) : null, // Show home icon for items "at home"
+                    onTap: () => _editItem(context, index - 1),
                   ),
                 );
               },
@@ -72,6 +81,7 @@ class _CartState extends State<Cart> {
   void _editItem(BuildContext context, int index) {
     final nameController = TextEditingController(text: groceries![index].name);
     final priceController = TextEditingController(text: groceries![index].price.toString());
+    bool isAtHome = groceries![index].category == 'at home';
 
     showDialog(
       context: context,
@@ -82,6 +92,20 @@ class _CartState extends State<Cart> {
           children: [
             TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
             TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
+            CheckboxListTile(
+              title: Text("At Home"),
+              value: isAtHome,
+              onChanged: (newValue) {
+                setState(() {
+                  isAtHome = newValue!;
+                  if (isAtHome) {
+                    groceries![index].category = 'at home';
+                  } else {
+                    groceries![index].category = '';
+                  }
+                });
+              },
+            ),
           ],
         ),
         actions: [
@@ -95,6 +119,7 @@ class _CartState extends State<Cart> {
               final updatedItem = GroceryItem(
                 name: nameController.text,
                 price: double.parse(priceController.text),
+                category: isAtHome ? 'at home' : '', // Set the category based on checkbox state
               );
 
               setState(() {
