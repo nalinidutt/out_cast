@@ -76,25 +76,25 @@ class _CartState extends State<Cart> {
   }
 
   void _editItem(BuildContext context, int index) {
-    final nameController = TextEditingController(text: groceries![index].name);
-    final priceController = TextEditingController(text: groceries![index].price.toString());
-    bool isAtHome = groceries![index].category == 'at home';
+  final nameController = TextEditingController(text: groceries![index].name);
+  final priceController = TextEditingController(text: groceries![index].price.toString());
+  bool isAtHome = groceries![index].category == 'at home';
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Edit Item'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
-            TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
-            CheckboxListTile(
-              title: Text("At Home"),
-              value: isAtHome,
-              onChanged: (newValue) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text('Edit Item'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(controller: nameController, decoration: InputDecoration(labelText: 'Name')),
+          TextField(controller: priceController, decoration: InputDecoration(labelText: 'Price'), keyboardType: TextInputType.number),
+          ListTile(
+            title: Text("At Home"),
+            leading: InkWell(
+              onTap: () {
                 setState(() {
-                  isAtHome = newValue!;
+                  isAtHome = !isAtHome;
                   if (isAtHome) {
                     groceries![index].category = 'at home';
                   } else {
@@ -102,32 +102,42 @@ class _CartState extends State<Cart> {
                   }
                 });
               },
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 2.0),
+                ),
+                child: isAtHome ? Icon(Icons.check, size: 18) : null,
+              ),
             ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            child: Text('Cancel'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          TextButton(
-            child: Text('Update'),
-            onPressed: () {
-              final updatedItem = GroceryItem(
-                name: nameController.text,
-                price: double.parse(priceController.text),
-                category: isAtHome ? 'at home' : '', // Set the category based on checkbox state
-              );
-
-              setState(() {
-                groceries![index] = updatedItem;
-              });
-
-              Navigator.of(context).pop();
-            },
           ),
         ],
       ),
-    );
-  }
+      actions: [
+        TextButton(
+          child: Text('Cancel'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        TextButton(
+          child: Text('Update'),
+          onPressed: () {
+            final updatedItem = GroceryItem(
+              name: nameController.text,
+              price: double.parse(priceController.text),
+              category: isAtHome ? 'at home' : '', // Set the category based on checkbox state
+            );
+
+            setState(() {
+              groceries![index] = updatedItem;
+            });
+
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    ),
+  );
+}
 }
