@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'cart.dart'; // This line imports the Cart class from cart.dart
-
+import 'profile.dart';
 void main() => runApp(MaterialApp(home: HomePage()));
 
 class HomePage extends StatefulWidget {
@@ -28,19 +28,19 @@ class _HomePageState extends State<HomePage> {
         children: [
           HomeScreen(), 
           BookPage(),   
-          ProfilePage(),
+          const Profile(),
           Cart(),      // This is the Cart widget you provided earlier
         ],
       ),
       bottomNavigationBar: Container(
-        color: Colors.black,
+        color: Colors.green.shade200,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal:15.0, vertical: 20.0),
           child: GNav(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.green.shade200,
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
+            tabBackgroundColor: Colors.green.shade300,
             gap: 8,
             selectedIndex: _selectedIndex,
             onTabChange: (index) {
