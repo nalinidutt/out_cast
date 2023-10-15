@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'cart.dart'; // This line imports the Cart class from cart.dart
-import 'profile.dart';
+import 'profile/profile.dart';
 void main() => runApp(MaterialApp(home: HomePage()));
 
 class HomePage extends StatefulWidget {
@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           HomeScreen(), 
           BookPage(),   
-          const Profile(),
-          Cart(),      // This is the Cart widget you provided earlier
+          Cart(),
+          const Profile(),      // This is the Cart widget you provided earlier
         ],
       ),
       bottomNavigationBar: Container(
@@ -59,13 +59,14 @@ class _HomePageState extends State<HomePage> {
                 icon: Icons.book,
                 text: 'Book',
               ),
-              GButton(
-                icon: Icons.person,
-                text: 'Profile',
-              ),
+              
               GButton(           // Add a GButton for the Cart
                 icon: Icons.shopping_cart,
                 text: 'Cart',
+              ),
+              GButton(
+                icon: Icons.person,
+                text: 'Profile',
               ),
             ],
           ),

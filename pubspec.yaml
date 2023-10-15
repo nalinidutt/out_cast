@@ -31,7 +31,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/groceries copy.csv
-    - assets/images/profile_person.png
+    - assets/images/profile_person.jpeg
   # An image asset can refer to one or more resolution-specific "variants"
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages

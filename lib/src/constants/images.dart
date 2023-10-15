@@ -1,1 +1,1 @@
-const String tProfileImage = 'assets/images/profile_person.png';
+const String tProfileImage = 'assets/images/profile_person.jpeg';

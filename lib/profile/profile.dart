@@ -1,6 +1,7 @@
+import 'package:cookin/profile/dietary.dart';
 import 'package:flutter/material.dart';
-import 'src/constants/text_strings.dart';
-import 'src/constants/images.dart';
+import '../src/constants/text_strings.dart';
+import '../src/constants/images.dart';
 import 'profilemenu.dart';
 import 'updateprofile.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -67,10 +68,9 @@ class Profile extends StatelessWidget {
               const SizedBox(height: 10),
 
               /// -- MENU
-              ProfileMenuWidget(title: "Preferences", icon: LineAwesomeIcons.cog, onPress: () {}),
-              ProfileMenuWidget(title: "Billing Details", icon: LineAwesomeIcons.wallet, onPress: () {}),
-              ProfileMenuWidget(title: "User Management", icon: LineAwesomeIcons.user_check, onPress: () {}),
-              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {}),
+              ProfileMenuWidget(title: "Dietary Preferences", icon: LineAwesomeIcons.nutritionix, onPress: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const DietaryPreferences()));}),
+              ProfileMenuWidget(title: "Recent Orders", icon: LineAwesomeIcons.wallet, onPress: () {}),
+              ProfileMenuWidget(title: "Stores and Prices", icon: LineAwesomeIcons.dollar_sign, onPress: () {}),
               ProfileMenuWidget(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
