@@ -51,7 +51,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/krisshbhargava/flutter/packages/flutter",
+      "rootUri": "file:///Users/krisshbhargava/Desktop/HackGT%20App/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -63,7 +63,7 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///Users/krisshbhargava/flutter/packages/flutter_test",
+      "rootUri": "file:///Users/krisshbhargava/Desktop/HackGT%20App/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -111,7 +111,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/krisshbhargava/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/krisshbhargava/Desktop/HackGT%20App/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -170,7 +170,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-10-15T03:13:09.813258Z",
+  "generated": "2023-10-15T05:32:00.776207Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }
