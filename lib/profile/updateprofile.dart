@@ -80,12 +80,12 @@ class UpdateProfileScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.pop(context);},
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green.shade300,
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text(tEditProfile, style: TextStyle(color: Colors.white)),
+                        child: const Text("Save Changes", style: TextStyle(color: Colors.white)),
                       ),
                     ),
                     const SizedBox(height: tFormHeight),
