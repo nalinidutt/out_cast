@@ -39,44 +39,38 @@ class _CartState extends State<Cart> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Cart')),
-      body: groceries == null
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: groceries!.length + 1, // +1 for the "At Home" header
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return ListTile(
-                    title: Text('At Home', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    onTap: null, // Non-clickable header
-                  );
-                }
-                final item = groceries![index - 1]; // -1 to adjust for the added header
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(title: Text('Cart')),
+    body: groceries == null
+        ? Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: groceries!.length, // Removed +1
+            itemBuilder: (context, index) {
+              final item = groceries![index]; // Removed -1 adjustment
 
-                return Dismissible(
-                  key: UniqueKey(),
-                  onDismissed: (direction) {
-                    setState(() {
-                      groceries!.removeAt(index - 1);
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${item.name} removed')),
-                    );
-                  },
-                  background: Container(color: Colors.red),
-                  child: ListTile(
-                    title: Text(item.name),
-                    subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
-                    trailing: item.category == 'at home' ? Icon(Icons.home) : null, // Show home icon for items "at home"
-                    onTap: () => _editItem(context, index - 1),
-                  ),
-                );
-              },
-            ),
-    );
-  }
+              return Dismissible(
+                key: UniqueKey(),
+                onDismissed: (direction) {
+                  setState(() {
+                    groceries!.removeAt(index);
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('${item.name} removed')),
+                  );
+                },
+                background: Container(color: Colors.red),
+                child: ListTile(
+                  title: Text(item.name),
+                  subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
+                  trailing: item.category == 'at home' ? Icon(Icons.home) : null, // Show home icon for items "at home"
+                  onTap: () => _editItem(context, index),
+                ),
+              );
+            },
+          ),
+  );
+}
 
   void _editItem(BuildContext context, int index) {
   final nameController = TextEditingController(text: groceries![index].name);
