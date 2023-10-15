@@ -29,41 +29,80 @@ class SampleItemListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-          return InkWell(
-              onTap: () {
-                Navigator.restorablePushNamed(
-                  context,
-                  SampleItemDetailsView.routeName,
-                  arguments: item,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              onChanged: (value) {
+                // Implement your search logic here
+                // You can filter the items based on the search text
+                // and update the UI accordingly.
+              },
+              decoration: InputDecoration(
+                hintText: 'Search',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.restorablePushNamed(
+                      context,
+                      SampleItemDetailsView.routeName,
+                      arguments: item,
+                    );
+                  },
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12.0),
+                            topRight: Radius.circular(12.0),
+                          ),
+                        ),
+                        Image.network(
+                          item.imageURL,
+                          fit: BoxFit.cover,
+                          height: 150,
+                        ),
+                        ListTile(
+                          title: Text(
+                            item.title,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(item.cuisine),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
-              child: Card(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Image.network(
-                      item.imageURL,
-                      fit: BoxFit.cover,
-                      height: 150,),
-                    ListTile(
-                    title: Text(item.title),
-                    subtitle: Text(item.cuisine),
-                    ),
-                  ] ,
             ),
-            
           ),
-          );
-        },
+        ],
       ),
     );
   }
 
-
+  
   
   /*@override
   Widget build(BuildContext context) {
