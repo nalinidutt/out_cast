@@ -1,3 +1,4 @@
+import 'package:cookin/home/sample_item_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'cart.dart'; // This line imports the Cart class from cart.dart
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
         children: [
-          HomeScreen(), 
+          const SampleItemListView(), 
           BookPage(),   
           const Profile(),
           Cart(),      // This is the Cart widget you provided earlier
