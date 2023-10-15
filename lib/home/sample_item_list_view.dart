@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'my_flutter_app_icons.dart';
-
-// import '../settings/settings_view.dart';
 import 'sample_item.dart';
 import 'sample_item_details_view.dart';
 
@@ -10,16 +7,16 @@ class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
     super.key,
     this.items = const [
-      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"), 
-      SampleItem("Sushi", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/spicy-crab-rolls4-1654808938.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*"), 
-      SampleItem("Carrot Cake", "Dessert", 2, "https://static01.nyt.com/images/2020/11/01/dining/Carrot-Cake-textless/Carrot-Cake-textless-threeByTwoMediumAt2X.jpg"), 
-      SampleItem("Fettucine Alfredo", "Italian", 2, "https://www.modernhoney.com/wp-content/uploads/2018/08/Fettuccine-Alfredo-Recipe-1.jpg"), 
-      SampleItem("Chicken and Waffles", "American", 2, "https://www.wellseasonedstudio.com/wp-content/uploads/2019/03/Chicken-and-waffles-18.jpg"), 
-      SampleItem("Butter Chicken", "Indian", 2, "https://www.cookingclassy.com/wp-content/uploads/2021/01/butter-chicken-4.jpg"), 
-      SampleItem("Lamb Gyro", "Mediterranian", 2, "https://hips.hearstapps.com/hmg-prod/images/gyro-sandwich1-1650490757.jpg?crop=0.683xw:1.00xh;0.167xw,0&resize=1200:*"), 
-      SampleItem("Vegetable Soup", "American", 2, "https://www.eatingbirdfood.com/wp-content/uploads/2022/08/vegetable-soup-hero.jpg"), 
-      SampleItem("Mac and Cheese", "American", 0, "https://pinchofyum.com/wp-content/uploads/Instant-Pot-Mac-and-Cheese-Square.jpg"), 
-      SampleItem("Pan Seared Steak", "American", 2, "https://www.spendwithpennies.com/wp-content/uploads/2022/08/1200-Perfect-Ribeye-Steak-SpendWithPennies.jpg")
+      SampleItem("Pad Thai", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/pad-thai-index-6477629462a38.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*", "Pad Thai is a popular Thai stir-fried noodle dish known for its sweet, salty, and tangy flavors. It typically features rice noodles stir-fried with shrimp, tofu, or chicken, along with ingredients like eggs, bean sprouts, and chopped peanuts. The dish is often seasoned with a sauce made from tamarind, fish sauce, and sugar, creating a harmonious blend of flavors and textures."), 
+      SampleItem("Sushi", "Asian", 2, "https://hips.hearstapps.com/hmg-prod/images/spicy-crab-rolls4-1654808938.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*", "Sushi is a traditional Japanese dish known for its simplicity and elegance. It typically consists of vinegared rice, fresh seafood, and vegetables, often wrapped in seaweed. Sushi is appreciated for its delicate flavors and artistic presentation, making it a popular and iconic culinary choice worldwide."), 
+      SampleItem("Carrot Cake", "Dessert", 2, "https://static01.nyt.com/images/2020/11/01/dining/Carrot-Cake-textless/Carrot-Cake-textless-threeByTwoMediumAt2X.jpg", ""), 
+      SampleItem("Fettucine Alfredo", "Italian", 2, "https://www.modernhoney.com/wp-content/uploads/2018/08/Fettuccine-Alfredo-Recipe-1.jpg", ""), 
+      SampleItem("Chicken and Waffles", "American", 2, "https://www.wellseasonedstudio.com/wp-content/uploads/2019/03/Chicken-and-waffles-18.jpg", ""), 
+      SampleItem("Butter Chicken", "Indian", 2, "https://www.cookingclassy.com/wp-content/uploads/2021/01/butter-chicken-4.jpg", "Butter chicken is a popular Indian dish known for its creamy and flavorful tomato-based sauce. Tender pieces of marinated chicken are simmered in this rich sauce, which is often made with a mixture of butter, cream, and various spices, including garam masala. The dish is renowned for its luscious and mildly spicy taste, making it a beloved choice in Indian cuisine."), 
+      SampleItem("Lamb Gyro", "Mediterranian", 2, "https://hips.hearstapps.com/hmg-prod/images/gyro-sandwich1-1650490757.jpg?crop=0.683xw:1.00xh;0.167xw,0&resize=1200:*", ""), 
+      SampleItem("Vegetable Soup", "American", 2, "https://www.eatingbirdfood.com/wp-content/uploads/2022/08/vegetable-soup-hero.jpg", ""), 
+      SampleItem("Mac and Cheese", "American", 0, "https://pinchofyum.com/wp-content/uploads/Instant-Pot-Mac-and-Cheese-Square.jpg", ""), 
+      SampleItem("Pan Seared Steak", "American", 2, "https://www.spendwithpennies.com/wp-content/uploads/2022/08/1200-Perfect-Ribeye-Steak-SpendWithPennies.jpg", "")
       ],
   });
 
@@ -34,16 +31,26 @@ class SampleItemListView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
-              onChanged: (value) {
-                // Implement your search logic here
-                // You can filter the items based on the search text
-                // and update the UI accordingly.
+              onChanged: (value) {/*
+                TextEditingController _searchController = TextEditingController();
+                String query = _searchController.text;
+                List<String> filteredItems = [];
+
+                setState(() {
+                filteredItems = items
+                    .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+                    .toList();
+                });*/
               },
               decoration: InputDecoration(
                 hintText: 'Search',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                    width: 10.0
+                    ),
                 ),
               ),
             ),
@@ -55,10 +62,10 @@ class SampleItemListView extends StatelessWidget {
                 final item = items[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.restorablePushNamed(
-                      context,
-                      SampleItemDetailsView.routeName,
-                      arguments: item,
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SampleItemDetailsView(item: item),
+                      ),
                     );
                   },
                   child: Card(
@@ -75,10 +82,13 @@ class SampleItemListView extends StatelessWidget {
                             topRight: Radius.circular(12.0),
                           ),
                         ),
-                        Image.network(
-                          item.imageURL,
-                          fit: BoxFit.cover,
-                          height: 150,
+                        Hero(
+                          tag: item.title, // Use the same tag as in the list view
+                          child: Image.network(
+                            item.imageURL,
+                            fit: BoxFit.cover,
+                            height: 150,
+                          ),
                         ),
                         ListTile(
                           title: Text(
@@ -102,3 +112,4 @@ class SampleItemListView extends StatelessWidget {
     );
   }
 }
+
