@@ -10,7 +10,6 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         // leading: IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute()))}, icon: const Icon(LineAwesomeIcons.angle_left)),
@@ -57,7 +56,7 @@ class Profile extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfileScreen()));},
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade300, side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tEditProfile, style: TextStyle(color: Colors.white)),
