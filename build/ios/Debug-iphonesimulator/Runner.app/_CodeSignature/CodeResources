@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		hXJbSUWDrt1YeiSwtp55OZOwp/M=
+		9jw/F3qbngpcLLpFSERVCQyBTaI=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,23 +54,27 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		gW1+QcOVeGcAVdRWeujb+IoMpao=
+		QpsGTX5Hz2b6GvJcTEQw/WcDjAQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		ME0cAg6cl/bTZmwXEVgMugDccUI=
+		Vpq8RgL8f36sMyfn61NQ5yWli0o=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		3S09n6vhjeK2VJgNhi8tBhoP4BQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
-		vKJkVIcw+LGHFnKJGwrQwCREv68=
+		3u0pUFGiIbrWbKLWNW31Mf3iZAY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		O4VwtztpdlD2/t9toQTTCYJR+mc=
+		PDaw61JBMgkNh6QQc5EwYfnoScY=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/profile_person.png</key>
+		<data>
+		BbjCSppoGr4I5NJDa2Dt2405qQI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,11 +86,15 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		Kzt7if3Tt4f2/oX8aKKipsFqKaw=
+		6j9WJr75R/tOzFG8g25Igl//8Eo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf</key>
+		<data>
+		6us+0+Uac46Xs1XRYRzcTTL5QvE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -265,7 +273,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AKG31Ww8USH7tc9CgDfuf3HIgYM6STniMDSex7HaXSM=
+			f4bhHteyytyZ6aRHHZXLSDUGr71QF7eFkxQHyYBSm2s=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -279,35 +287,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xjR/tRLq0lbs9AO8qpspRQvF9JpgHYeYY0iopK5RL/U=
+			kcgmBFKGIv7vYONpytAb46IMrWQjnGEgRAehjrkiinc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AK9VrT1vIYmP534P8JLRoc2lLJQbaGDpko1FyK+MCV0=
+			FoHdXwZ88nEwWAzCCVHvFz0C81wHR+pzZVHCJ3AzYxs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			03eNc/4rvF27idiH8Dt8p74SgwrsSusWozWbrIZ8cRc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zX4DZFvESy3Ue3y2JvUcTsv1Whl6t3JBYotHrBZfviE=
+			vNhauvpPgwICz/fXTeHK03Oc8x632emRLDM/W5v/5Vc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K8vQgIwV8DPihCekV4tQpm1h9fMHpkRsYxMORHFUR6Q=
+			t4LMl0i+eMAkP/rQbZIPrAGOHQmoJ7hW6n3+oVN7qmo=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/profile_person.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			OFudZD8DldfpLaTHeogqOXef6OYzNkfoPHqJvVja1EQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -328,7 +343,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G9+S/0qozmu7x31xzGprocxNqxX7qOFwU9sNDIKiQLY=
+			MxPud5jzpJVPPdrEyLk56LuP6D5jLq3yGdKDh5lpDLU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -336,6 +351,13 @@
 			<key>hash2</key>
 			<data>
 			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MQApiodAVF7kBzaO1YAMdLDuHDt4xLMRNxbICBm1bKM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/shaders/ink_sparkle.frag</key>
