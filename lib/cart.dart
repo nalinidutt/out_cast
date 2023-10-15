@@ -47,6 +47,9 @@ class _CartState extends State<Cart> {
           : ListView.builder(
               itemCount: groceries!.length + 1, // +1 for the "At Home" header
               itemBuilder: (context, index) {
+                if (index == 0) {
+                  return ListTile();
+                }
                 final item = groceries![index - 1]; // -1 to adjust for the added header
 
                 return Dismissible(
